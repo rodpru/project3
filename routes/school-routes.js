@@ -11,9 +11,33 @@ router.get("/schools", (req, res) => {
     res.json(allSchoolsFromDB);
   });
 });
+
+router.get("/kindergartens", (req, res) => {
+  console.log("loggeduser", req.user);
+  School.find({ schoolType: "kindergarten" }).then((allKindergartensFromDB) => {
+    res.json(allKindergartensFromDB);
+  });
+});
+
+router.get("/nurseries", (req, res) => {
+  console.log("loggeduser", req.user);
+  School.find({ schoolType: "nursery" }).then((allNurseriesFromDB) => {
+    res.json(allNurseriesFromDB);
+  });
+});
+
 //Route to add schools
 router.post("/schools", (req, res) => {
-  const { name, address, description, email, site, phone, geo } = req.body;
+  const {
+    name,
+    address,
+    description,
+    email,
+    site,
+    phone,
+    schoolType,
+    geo,
+  } = req.body;
   School.create({
     name,
     address,
@@ -21,11 +45,13 @@ router.post("/schools", (req, res) => {
     email,
     site,
     phone,
+    schoolType,
     geo,
   }).then((response) => {
     res.json(response);
   });
 });
+
 //Route to find by id
 router.get("/schools/:id", (req, res) => {
   School.findById(req.params.id).then((theSchoolFromDB) => {

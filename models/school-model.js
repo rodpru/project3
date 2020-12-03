@@ -11,6 +11,10 @@ const schoolSchema = new Schema({
   rating: Number,
   photo: String,
   globalID: String,
+  schoolType: {
+    type: String,
+    enum: ["kindergarten", "nursery"],
+  },
   geo: {
     lat: Number,
     lng: Number,

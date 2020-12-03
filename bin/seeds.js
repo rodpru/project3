@@ -14,6 +14,7 @@
 //     rating: "",
 //     photo: "https://www.aescolinhadapipas.pt/espaco?lightbox=image_m88",
 //     globalID: "",
+//     schoolType: "nursery",
 //     geo: {
 //       lat: 38.77340540374433,
 //       lng: -9.153980116631432,
@@ -30,6 +31,7 @@
 //     rating: "",
 //     photo: "",
 //     globalID: "",
+//     schoolType: "nursery",
 //     geo: {
 //       lat: 38.75990863208062,
 //       lng: -9.138826802200622,
@@ -47,6 +49,7 @@
 //     rating: "",
 //     photo: "",
 //     globalID: "",
+//     schoolType: "nursery",
 //     geo: {
 //       lat: 38.77544105727753,
 //       lng: -9.107563425102565,
@@ -63,6 +66,7 @@
 //     rating: "",
 //     photo: "",
 //     globalID: "",
+//     schoolType: "nursery",
 //     geo: {
 //       lat: 38.725042557809495,
 //       lng: -9.148217034929099,
@@ -79,6 +83,7 @@
 //     rating: "",
 //     photo: "",
 //     globalID: "",
+//     schoolType: "nursery",
 //     geo: {
 //       lat: 38.73956479230151,
 //       lng: -9.13024673769617,
@@ -95,6 +100,7 @@
 //     rating: "",
 //     photo: "",
 //     globalID: "",
+//     schoolType: "nursery",
 //     geo: {
 //       lat: 38.750436521274565,
 //       lng: -9.169434711640292,
@@ -111,6 +117,7 @@
 //     rating: "",
 //     photo: "",
 //     globalID: "",
+//     schoolType: "nursery",
 //     geo: {
 //       lat: 38.738951947783086,
 //       lng: -9.141134042328058,
