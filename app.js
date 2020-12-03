@@ -81,7 +81,7 @@ app.use(
 const index = require("./routes/index");
 app.use("/", index);
 const schoolRoutes = require("./routes/school-routes");
-app.use("/api", schoolRoutes);
+app.use("/", schoolRoutes);
 const authRoutes = require("./routes/auth-routes");
 app.use("/api", authRoutes);
 
