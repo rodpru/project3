@@ -5,7 +5,8 @@ const userSchema = new Schema(
   {
     username: String,
     password: String,
-    favourites: [String],
+    favoriteNurseries: [String],
+    favoriteKindergartens: [String],
     googleId: String,
   },
   {
