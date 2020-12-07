@@ -58,6 +58,14 @@ router.get("/schools/:id", (req, res) => {
     res.json(theSchoolFromDB);
   });
 });
+
+// router.get("/schools/details/:id", (req, res) => {
+//   console.log("loggeduser", req.user);
+//   School.findById(req.params.id).then((allSchoolsFromDB) => {
+//     res.json(allSchoolsFromDB);
+//   });
+// });
+
 // Route to update the school
 router.put("/schools/:id", (req, res) => {
   const schoolId = req.params.id;
