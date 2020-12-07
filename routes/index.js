@@ -7,11 +7,21 @@ const School = require("../models/school-model");
 router.get("/", (req, res, next) => {
   res.render("index");
 });
+// router.get("/profile/:id", (req, res, next) => {
+//   const id = req.params.id;
+//   User.findById(id).then((user) => {
+//     return School.find({ _id: user.favorites }).then((response) => {
+//       console.log(response);
+//       res.json(response);
+//     });
+//   });
+// });
+
 router.get("/profile/:id", (req, res, next) => {
   const id = req.params.id;
   User.findById(id).then((user) => {
-    return School.find({ _id: user.favorites }).then((response) => {
-      console.log(response);
+    return School.find({ name: user.favorites }).then((response) => {
+      console.log(response, "profile data");
       res.json(response);
     });
   });

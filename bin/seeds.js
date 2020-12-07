@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const School = require("../models/school-model");
 const MONGO_DB = require("../configs/db.config");
 const axios = require("axios");
-const kindergartens = [];
+// const kindergartens = [];
 
 // axios
 //   .get(
@@ -13,7 +13,8 @@ const kindergartens = [];
 //       kindergartens.push({
 //         name: kindergarten.attributes.INF_NOME,
 //         description: kindergarten.attributes.INF_DESCRICAO,
-//         type: "kindergarten",
+//         schoolType: "kindergarten",
+//         photo: "https://www.aescolinhadapipas.pt/espaco?lightbox=image_m88",
 //       });
 //     });
 //     console.log(kindergartens);
