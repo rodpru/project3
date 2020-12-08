@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const School = require("../models/school-model");
 const MONGO_DB = require("../configs/db.config");
 const axios = require("axios");
-// const kindergartens = [];
+const kindergartens = [];
 
 // axios
 //   .get(
@@ -14,22 +14,23 @@ const axios = require("axios");
 //         name: kindergarten.attributes.INF_NOME,
 //         description: kindergarten.attributes.INF_DESCRICAO,
 //         schoolType: "kindergarten",
-//         photo: "https://www.aescolinhadapipas.pt/espaco?lightbox=image_m88",
-//       });
+//       photo:
+//         "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607423361/Nurseries/pro-church-media-2DTE3ePfnD8-unsplash_qpndxi.jpg",
 //     });
-//     console.log(kindergartens);
-//     School.create(kindergartens)
-//       .then((nurseriesFromDB) => {
-//         console.log(`Created ${nurseriesFromDB.length} kindergartens`);
-//         // Once created, close the DB connection
-//         mongoose.connection.close();
-//       })
-//       .catch((err) =>
-//         console.log(
-//           `An error occurred while creating kindergartens from the DB: ${err}`
-//         )
-//       );
 //   });
+//   console.log(kindergartens);
+//   School.create(kindergartens)
+//     .then((nurseriesFromDB) => {
+//       console.log(`Created ${nurseriesFromDB.length} kindergartens`);
+//       // Once created, close the DB connection
+//       mongoose.connection.close();
+//     })
+//     .catch((err) =>
+//       console.log(
+//         `An error occurred while creating kindergartens from the DB: ${err}`
+//       )
+//     );
+// });
 
 // const nurseries = [
 //   {
@@ -150,6 +151,194 @@ const axios = require("axios");
 //     geo: {
 //       lat: 38.738951947783086,
 //       lng: -9.141134042328058,
+//     },
+//   },
+//   {
+//     name: "Chupetas e Biberons",
+//     address: "Estr. de Telheiras 129, 1600-769 Lisboa",
+//     description:
+//       "Na Creche Chupetas e Biberons diariamente uma equipa especializada realiza atividades que visam o desenvolvimento global da criança: Ginástica, Hortinha pedagógica, Saídas para teatro e passeios ao ar livre, visitas semanais à biblioteca Orlando Ribeiro em Telheiras. Bom espaço exterior (vivenda), boa localização, material didático, alimentação confecionada na própria escola e certificada pelo HACCP (Segurança Alimentar).",
+//     email: "chupetasebiberons@gmail.com",
+//     site: "https://www.chupetasebiberons.pt",
+//     phone: "217587895",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.76080994394385,
+//       lng: -9.167043194770288,
+//     },
+//   },
+//   {
+//     name: "Colégio Saint Daniel Brottier",
+//     address: "Av. Alm. Gago Coutinho 80, 1700-031 Lisboa",
+//     description:
+//       "O Colégio Saint Daniel Brottier é uma Instituição de ensino privado com as valências de Creche, Educação Pré-escolar, 1.º e 2.º Ciclos do Ensino Básico, com a missão de promover o  desenvolvimento cognitivo, pessoal e social das crianças até à última etapa da sua infância.",
+//     email: "geral@csdbrottier.pt",
+//     site: "https://csdbrottier.pt",
+//     phone: "21 840 9025",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.753287201542875,
+//       lng: -9.129736256773512,
+//     },
+//   },
+//   {
+//     name: "Creche & Aparece",
+//     address: "Rua do Polo Norte, nº 10, 1990-265, Parque das Nações",
+//     description:
+//       "A principal missão da Creche & Aparece é desenvolver um projecto de excelência na área do ensino da 1ª Infância (creche - 3 meses aos 3 anos) e Jardim de Infância (dos 3 aos 6 anos), inovador e diferenciador, que satisfaça as exigentes necessidades diárias de crianças e pais. Queremos proporcionar às crianças a oportunidade de experimentarem e descobrirem caminhos com segurança e autonomia, de modo a formar crianças COMPETENTES, RESPONSÁVEIS, MOTIVADAS, AUTÓNOMAS, SINÉRGICAS, PRÓ-ATIVAS, SOLIDÁRIAS e acima de tudo, FELIZES!",
+//     email: "geral@creche-e-aparece.com",
+//     site: "http://www.creche-e-aparece.com",
+//     phone: "21 404 6474",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.77437598542902,
+//       lng: -9.095545220846352,
+//     },
+//   },
+//   {
+//     name: "Creche Lumiar",
+//     address: "Alameda das Linhas de Torres, nº 225 - loja 8, 1750-144, Lisboa",
+//     description:
+//       "É na creche que a criança tem as suas primeiras experiências fora do seu círculo familiar. A qualidade destes cuidados dita as experiências nos primeiros anos de vida e terá grande impacto no seu desenvolvimento futuro. Na Creche Lumiar existe um ambiente acolhedor e dinamizador de aprendizagens, onde a criança se pode desenvolver de forma global, adequada e harmoniosa.",
+//     email: " crechelumiar@gmail.com",
+//     site: "http://www.crechelumiar.com",
+//     phone: "217 573 634 ",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.77282756885384,
+//       lng: -9.160691592657402,
+//     },
+//   },
+//   {
+//     name: "Os Pirralhos do Marques",
+//     address: "R. Rodrigo da Fonseca 60, 1250-096 Lisboa",
+//     description:
+//       "Cooperar com a família na sua missão educativa. Oferecer às crianças, na sua primeira e segunda infância, um espaço de vida socialmente organizado e adaptado ás suas idades, para que possam desenvolver integralmente a sua personalidade e a sua integração social. Assegurar o florescimento da personalidade da criança pela satisfação das suas necessidades sensoriais, cognitivas, emocionais e afectivas. Ajudar a criança a organizar as capacidades de resposta e de reacção ao meio ambiente, Proporcionar às famílias a sua participação “na vida da instituição.",
+//     email: "pirralhos@netcabo.pt",
+//     site: "http://www.pirralhosdomarques.com",
+//     phone: " 21 386 7639",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.72509118642677,
+//       lng: -9.153233031660204,
+//     },
+//   },
+//   {
+//     name: "Jardim Escola “O Bosque",
+//     address:
+//       "Rua Cidade de Benguela 257, Santa Maria dos Olivais, 1800-073, Lisboa",
+//     description:
+//       "A pedagogia tradicional define-se como uma edução pré-tecnológica em que o professor é o emissor, os materiais de educação a mensagem e o estudante o receptor da informação. Tipicamente baseia-se em materiais de aprendizagem pré-concebidos, prazos, tarefas de avaliação e critérios determinados pelos professores.",
+//     email: " colegio.bosque@sapo.pt",
+//     site: "http://obosquejardimescola.com",
+//     phone: " 218534953",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.76648,
+//       lng: -9.112827,
+//     },
+//   },
+//   {
+//     name: "Infantário Pedrita",
+//     address: "Estr. de Benfica 533, 1500-335 Lisboa",
+//     description:
+//       "No nosso Infantário recebemos crianças desde o 1 ano de idade até aos 6 anos. Surgimos em 1977 e tem sido com o empenho e ajuda de muitos que temos construído mais do que uma Instituição, uma Comunidade de Educadoras, Auxiliares, Técnicos e Encarregados de Educação, que tem como marcas principais a Confiança e Afectividade para com todas as crianças por nós recebidas.",
+//     email: "jardiminfantil.pedrita@gmail.com ",
+//     site: "http://https://www.pedrita.pt",
+//     phone: "21 715 4701",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.74990430426877,
+//       lng: -9.193786537617436,
+//     },
+//   },
+//   {
+//     name: "Colégio do Paço",
+//     address:
+//       "Estrada Paço do Lumiar, Nº 65 - Loja A (Quinta dos Inglesinhos), Carnide, 1600-544 Lisboa",
+//     description:
+//       "O Colégio do Paço recebe, desde 3 de setembro de 2007, bebés e crianças dos 3 meses aos 3 anos, tendo-se sempre afirmado como uma creche familiar, fundada através de fortes laços com a infância e ligações privilegiadas com as famílias, promovendo relações de amizade fundamentais para um desenvolvimento emocional e social das crianças.No nosso colégio valorizamos a criança de forma individual, designadamente, as suas capacidades e formas de se expressar. Elas são os principais autores das suas aprendizagens e sentem-se valorizadas nas suas descobertas, permitindo conhecer, estimular e desenvolver as suas múltiplas linguagens, a imaginação e a criatividade.",
+//     email: "geral@colegiodopaco.pt",
+//     site: "http://colegiodopaco.pt",
+//     phone: "210995352",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.763927,
+//       lng: -9.184482,
+//     },
+//   },
+//   {
+//     name: "A Chuva de Papel - Creche e Jardim de Infância",
+//     address: "Rua José Travassos, N.º 33-A e 31-C, Lumiar, 1600-410 Lisboa",
+//     description:
+//       "Dispõe de duas salas de Creche destinadas a crianças com idades compreendidas entre os 10 e os 36 meses (Licença de Funcionamento nº 59/2012 emitida pelo Instituto da Segurança Social, I.P.). Dispõe ainda de uma sala de Jardim de Infância, destinada a crianças entre os três e os seis anos de idade. O espaço é amplo, confortável e seguro, tendo sido concebido de raiz para a atividade educativa.",
+//     email: "geral.chuvadepapel@gmail.com",
+//     site: "https://www.chuvadepapel.com/",
+//     phone: " 217550483",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.763446,
+//       lng: -9.163371,
+//     },
+//   },
+//   {
+//     name: "Creche Algodão Doce",
+//     address: "Rua Prof. Luís Cunha Gonçalves Nº. 4, Lumiar, 1600-648 Lisboa",
+//     description: "Escola IPSS/Parceria",
+//     email: " algodao.doce@fasl.pt",
+//     site: "http://www.fasl.pt",
+//     phone: "217151972",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.763446,
+//       lng: -9.163371,
+//     },
+//   },
+//   {
+//     name: "Externato Marista de Lisboa",
+//     address: "R. Maj. Neutel de Abreu 11, 1500-459 Lisboa",
+//     description:
+//       "Evangelizar, através da educação das crianças e dos jovens de Lisboa, na linha do estilo e do carisma próprios de Marcelino Champagnat, dentro da comunhão eclesial apostando em suscitar “bons cristãos e honrados cidadãos”. Procurar, no desempenho das nossas funções, agir com sentido de responsabilidade profissional,melhorando a qualidade de educadores, dentro de uma missão partilhada.",
+//     email: "secretaria@ext.marista-lisboa.org",
+//     site: "http://www.ext.marista-lisboa.org",
+//     phone: "21 771 2030",
+//     rating: "",
+//     photo: "",
+//     globalID: "",
+//     schoolType: "nursery",
+//     geo: {
+//       lat: 38.747548,
+//       lng: -9.18127,
 //     },
 //   },
 // ];
