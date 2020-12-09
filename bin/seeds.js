@@ -2,35 +2,37 @@ const mongoose = require("mongoose");
 const School = require("../models/school-model");
 const MONGO_DB = require("../configs/db.config");
 const axios = require("axios");
+
 const kindergartens = [];
 
-// axios
-//   .get(
-//     "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/POIEducacao/FeatureServer/10/query?where=1%3D1&outFields=*&outSR=4326&f=json"
-//   )
-//   .then((response) => {
-//     response.data.features.map((kindergarten) => {
-//       kindergartens.push({
-//         name: kindergarten.attributes.INF_NOME,
-//         description: kindergarten.attributes.INF_DESCRICAO,
-//         schoolType: "kindergarten",
-//       photo:
-//         "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607423361/Nurseries/pro-church-media-2DTE3ePfnD8-unsplash_qpndxi.jpg",
-//     });
-//   });
-//   console.log(kindergartens);
-//   School.create(kindergartens)
-//     .then((nurseriesFromDB) => {
-//       console.log(`Created ${nurseriesFromDB.length} kindergartens`);
-//       // Once created, close the DB connection
-//       mongoose.connection.close();
-//     })
-//     .catch((err) =>
-//       console.log(
-//         `An error occurred while creating kindergartens from the DB: ${err}`
-//       )
-//     );
-// });
+axios
+  .get(
+    "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/POIEducacao/FeatureServer/10/query?where=1%3D1&outFields=*&outSR=4326&f=json"
+  )
+  .then((response) => {
+    response.data.features.map((kindergarten) => {
+      kindergartens.push({
+        name: kindergarten.attributes.INF_NOME,
+        description: kindergarten.attributes.INF_DESCRICAO,
+        GlobalID: kindergarten.attributes.GlobalID,
+        schoolType: "kindergarten",
+        photo:
+          "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607423361/Nurseries/pro-church-media-2DTE3ePfnD8-unsplash_qpndxi.jpg",
+      });
+    });
+    console.log(kindergartens);
+    School.create(kindergartens)
+      .then((nurseriesFromDB) => {
+        console.log(`Created ${nurseriesFromDB.length} kindergartens`);
+        // Once created, close the DB connection
+        mongoose.connection.close();
+      })
+      .catch((err) =>
+        console.log(
+          `An error occurred while creating kindergartens from the DB: ${err}`
+        )
+      );
+  });
 
 // const nurseries = [
 //   {
@@ -42,7 +44,8 @@ const kindergartens = [];
 //     site: "https://www.aescolinhadapipas.pt/",
 //     phone: "217 530 042",
 //     rating: "",
-//     photo: "https://www.aescolinhadapipas.pt/espaco?lightbox=image_m88",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421276/Nurseries/A-escolinha-da-pipas-2_jjz2zo.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -59,7 +62,8 @@ const kindergartens = [];
 //     site: "http://www.apatatina.pt",
 //     phone: "21 848 4757",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421276/Nurseries/A-patatina_tmgnfh.png",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -77,7 +81,8 @@ const kindergartens = [];
 //     site: "https://www.luacrescente.pt",
 //     phone: "21 852 0043",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421277/Nurseries/lua-crescente-1_jmigzt.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -94,7 +99,8 @@ const kindergartens = [];
 //     site: "http://www.naavozinha.pt",
 //     phone: "21 356 0367",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421277/Nurseries/Na-Avozinha-1_rxotpw.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -111,7 +117,8 @@ const kindergartens = [];
 //     site: "https://infantarioosfraldas.com/",
 //     phone: "21 846 5505",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421278/Nurseries/infantario-os-fraldas-creche_znb9xe.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -128,7 +135,8 @@ const kindergartens = [];
 //     site: "http://crechemariacatita.pt/",
 //     phone: "21 722 33 64",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421277/Nurseries/Creche-maria-catita_ybwn2p.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -146,7 +154,8 @@ const kindergartens = [];
 //     phone: "21 845 5930",
 //     rating: "",
 //     photo: "",
-//     globalID: "",
+//     globalID:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421276/Nurseries/colegio-do-largo_voz2ta.jpg",
 //     schoolType: "nursery",
 //     geo: {
 //       lat: 38.738951947783086,
@@ -162,7 +171,8 @@ const kindergartens = [];
 //     site: "https://www.chupetasebiberons.pt",
 //     phone: "217587895",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421276/Nurseries/Chupetas_e_Biberons_jsdv4m.png",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -179,7 +189,8 @@ const kindergartens = [];
 //     site: "https://csdbrottier.pt",
 //     phone: "21 840 9025",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421276/Nurseries/Cole%CC%81gio_Saint_Daniel_Brottier_i3hogw.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -196,7 +207,8 @@ const kindergartens = [];
 //     site: "http://www.creche-e-aparece.com",
 //     phone: "21 404 6474",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421277/Nurseries/creche-e-aparece_fu5cpu.png",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -213,7 +225,8 @@ const kindergartens = [];
 //     site: "http://www.crechelumiar.com",
 //     phone: "217 573 634 ",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421277/Nurseries/Creche-Lumiar_uk1wgu.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -230,7 +243,8 @@ const kindergartens = [];
 //     site: "http://www.pirralhosdomarques.com",
 //     phone: " 21 386 7639",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421277/Nurseries/os-pirralhos-do-marques_ow93y3.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -248,7 +262,8 @@ const kindergartens = [];
 //     site: "http://obosquejardimescola.com",
 //     phone: " 218534953",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421278/Nurseries/O-bosque-jardim-escola_hgal5f.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -265,7 +280,8 @@ const kindergartens = [];
 //     site: "http://https://www.pedrita.pt",
 //     phone: "21 715 4701",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607422296/Nurseries/infanta%CC%81rio-pedrita_a5rrwx.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -283,7 +299,8 @@ const kindergartens = [];
 //     site: "http://colegiodopaco.pt",
 //     phone: "210995352",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421276/Nurseries/colegio-do-paco_kb9lvn.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -300,7 +317,8 @@ const kindergartens = [];
 //     site: "https://www.chuvadepapel.com/",
 //     phone: " 217550483",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421281/Nurseries/chuva-de-papel_bk9e3n.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -316,7 +334,8 @@ const kindergartens = [];
 //     site: "http://www.fasl.pt",
 //     phone: "217151972",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607421277/Nurseries/creche-algoda%CC%83o-doce_z1h2fe.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {
@@ -333,7 +352,8 @@ const kindergartens = [];
 //     site: "http://www.ext.marista-lisboa.org",
 //     phone: "21 771 2030",
 //     rating: "",
-//     photo: "",
+//     photo:
+//       "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607422299/Nurseries/maristas_lx_ue9vwg.jpg",
 //     globalID: "",
 //     schoolType: "nursery",
 //     geo: {

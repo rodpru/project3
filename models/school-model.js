@@ -10,7 +10,7 @@ const schoolSchema = new Schema({
   phone: String,
   rating: Number,
   photo: String,
-  globalID: String,
+  GlobalID: String,
   schoolType: {
     type: String,
     enum: ["kindergarten", "nursery"],
