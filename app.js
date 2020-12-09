@@ -15,7 +15,7 @@ const passport = require("passport");
 require("./configs/passport");
 
 mongoose
-  .connect("mongodb://localhost/school-managment-server", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
   })
   .then((x) => {
