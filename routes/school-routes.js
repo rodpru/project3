@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const { response } = require("../app");
 const School = require("../models/school-model");
+const User = require("../models/user-model");
 
 //Route to retrieve all schools
 router.get("/schools", (req, res) => {
@@ -76,9 +77,24 @@ router.put("/schools/:id", (req, res) => {
   });
 });
 // Route to delete
-router.delete("/schools/:id", (req, res) => {
-  School.findByIdAndRemove(req.params.id).then(() => {
+router.post("/schools/:id", (req, res) => {
+  let schoolId = req.params.id
+  let userId = req.body.userId
+
+  School.findById(schoolId)
+  .then(school => {
+    let schoolName = school.name;
+
+    return User.findByIdAndUpdate(userId, { $pull: { favorites: {$in: schoolName}}}) 
+  })
+  .then((user) => {
+
     res.json({ message: `School with id ${req.params.id} was deleted` });
   });
 });
+// router.delete("/schools/:id", (req, res) => {
+//   School.findByIdAndRemove(req.params.id).then(() => {
+//     res.json({ message: `School with id ${req.params.id} was deleted` });
+//   });
+// });
 module.exports = router;

@@ -30,7 +30,7 @@ router.get("/profile/:id", (req, res, next) => {
 router.post("/profile", (req, res) => {
   const username = req.body.user;
   const favorite = req.body.id;
-  console.log(username, favorite);
+  console.log('this is the favorite route with username and schoolname', username, favorite);
   User.findByIdAndUpdate(username, {
     $push: { favorites: favorite },
   }).then((response) => {
