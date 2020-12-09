@@ -22,6 +22,7 @@ router.get("/kindergartens", (req, res) => {
 router.get("/nurseries", (req, res) => {
   console.log("loggeduser", req.user);
   School.find({ schoolType: "nursery" }).then((allNurseriesFromDB) => {
+    console.log(allNurseriesFromDB);
     res.json(allNurseriesFromDB);
   });
 });
