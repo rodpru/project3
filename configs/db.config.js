@@ -1,6 +1,7 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://localhost/school-managment-server", {
+  .connect(process.env.MONGODB_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,

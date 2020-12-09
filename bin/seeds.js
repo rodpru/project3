@@ -3,36 +3,36 @@ const School = require("../models/school-model");
 const MONGO_DB = require("../configs/db.config");
 const axios = require("axios");
 
-const kindergartens = [];
+// const kindergartens = [];
 
-axios
-  .get(
-    "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/POIEducacao/FeatureServer/10/query?where=1%3D1&outFields=*&outSR=4326&f=json"
-  )
-  .then((response) => {
-    response.data.features.map((kindergarten) => {
-      kindergartens.push({
-        name: kindergarten.attributes.INF_NOME,
-        description: kindergarten.attributes.INF_DESCRICAO,
-        GlobalID: kindergarten.attributes.GlobalID,
-        schoolType: "kindergarten",
-        photo:
-          "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607423361/Nurseries/pro-church-media-2DTE3ePfnD8-unsplash_qpndxi.jpg",
-      });
-    });
-    console.log(kindergartens);
-    School.create(kindergartens)
-      .then((nurseriesFromDB) => {
-        console.log(`Created ${nurseriesFromDB.length} kindergartens`);
-        // Once created, close the DB connection
-        mongoose.connection.close();
-      })
-      .catch((err) =>
-        console.log(
-          `An error occurred while creating kindergartens from the DB: ${err}`
-        )
-      );
-  });
+// axios
+//   .get(
+//     "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/POIEducacao/FeatureServer/10/query?where=1%3D1&outFields=*&outSR=4326&f=json"
+//   )
+//   .then((response) => {
+//     response.data.features.map((kindergarten) => {
+//       kindergartens.push({
+//         name: kindergarten.attributes.INF_NOME,
+//         description: kindergarten.attributes.INF_DESCRICAO,
+//         GlobalID: kindergarten.attributes.GlobalID,
+//         schoolType: "kindergarten",
+//         photo:
+//           "https://res.cloudinary.com/dgyg9zh3a/image/upload/v1607423361/Nurseries/pro-church-media-2DTE3ePfnD8-unsplash_qpndxi.jpg",
+//       });
+//     });
+//     console.log(kindergartens);
+//     School.create(kindergartens)
+//       .then((nurseriesFromDB) => {
+//         console.log(`Created ${nurseriesFromDB.length} kindergartens`);
+//         // Once created, close the DB connection
+//         mongoose.connection.close();
+//       })
+//       .catch((err) =>
+//         console.log(
+//           `An error occurred while creating kindergartens from the DB: ${err}`
+//         )
+//       );
+//   });
 
 // const nurseries = [
 //   {
