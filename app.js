@@ -50,7 +50,7 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, "dist")));
 
 app.use(
   session({
@@ -71,15 +71,18 @@ app.locals.title = "Express - Generated with IronGenerator";
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.CLIENT_HOSTNAME, 'http://localhost:3000'],
+    origin: [process.env.CLIENT_HOSTNAME, "http://localhost:3000"],
   })
 );
 
 const index = require("./routes/index");
 app.use("/", index);
 const schoolRoutes = require("./routes/school-routes");
-app.use("/", schoolRoutes);
+app.use("/api", schoolRoutes);
 const authRoutes = require("./routes/auth-routes");
 app.use("/api", authRoutes);
+
+const profileRoutes = require("./routes/profile-routes");
+app.use("/api", profileRoutes);
 
 module.exports = app;
