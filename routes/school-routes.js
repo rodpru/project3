@@ -61,6 +61,12 @@ router.get("/schools/:id", (req, res) => {
   });
 });
 
+router.get("/allschools", (req, res) => {
+  School.find().then((allSchools) => {
+    res.json(allSchools);
+  });
+});
+
 // router.get("/schools/details/:id", (req, res) => {
 //   console.log("loggeduser", req.user);
 //   School.findById(req.params.id).then((allSchoolsFromDB) => {
@@ -78,19 +84,20 @@ router.put("/schools/:id", (req, res) => {
 });
 // Route to delete
 router.post("/schools/:id", (req, res) => {
-  let schoolId = req.params.id
-  let userId = req.body.userId
+  let schoolId = req.params.id;
+  let userId = req.body.userId;
 
   School.findById(schoolId)
-  .then(school => {
-    let schoolName = school.name;
+    .then((school) => {
+      let schoolName = school.name;
 
-    return User.findByIdAndUpdate(userId, { $pull: { favorites: {$in: schoolName}}}) 
-  })
-  .then((user) => {
-
-    res.json({ message: `School with id ${req.params.id} was deleted` });
-  });
+      return User.findByIdAndUpdate(userId, {
+        $pull: { favorites: { $in: schoolName } },
+      });
+    })
+    .then((user) => {
+      res.json({ message: `School with id ${req.params.id} was deleted` });
+    });
 });
 // router.delete("/schools/:id", (req, res) => {
 //   School.findByIdAndRemove(req.params.id).then(() => {
