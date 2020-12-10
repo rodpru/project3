@@ -50,10 +50,7 @@ app.use(
   })
 );
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
-app.use(express.static(path.join(__dirname, "public")));
-app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(
   session({
@@ -74,7 +71,7 @@ app.locals.title = "Express - Generated with IronGenerator";
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.CLIENT_HOSTNAME],
+    origin: [process.env.CLIENT_HOSTNAME, 'http://localhost:3000'],
   })
 );
 
